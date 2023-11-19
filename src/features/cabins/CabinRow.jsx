@@ -71,6 +71,7 @@ function CabinRow({ cabin }) {
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
       <button onClick={() => mutate(cabinId)}>delete</button>
+      <h1></h1>
     </TableRow>
   );
 }
