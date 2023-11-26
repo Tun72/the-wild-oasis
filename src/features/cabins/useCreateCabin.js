@@ -18,7 +18,5 @@ export function useCreateCabin() {
     },
   });
 
-  console.log(isCreating);
-
   return { createCabin, isCreating };
 }

@@ -84,7 +84,7 @@ function CabinRow({ cabin }) {
       ) : (
         <span>&madash;</span>
       )}
-      <div>
+
         <Modal>
           <Menus.Menu>
             <Menus.Toggle id={cabinId} />
@@ -101,21 +101,21 @@ function CabinRow({ cabin }) {
                 <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
               </Modal.Open>
             </Menus.List>
-
-            <Modal.Window name="edit">
-              <CreateCabinForm cabinToEdit={cabin} />
-            </Modal.Window>
-
-            <Modal.Window name="delete">
-              <ConfirmDelete
-                resourceName="cabins"
-                onConfirm={() => deleteCabin(cabinId)}
-                disabled={isDeleting ? true : false}
-              />
-            </Modal.Window>
           </Menus.Menu>
+
+          <Modal.Window name="edit">
+            <CreateCabinForm cabinToEdit={cabin} />
+          </Modal.Window>
+
+          <Modal.Window name="delete">
+            <ConfirmDelete
+              resourceName="cabins"
+              onConfirm={() => deleteCabin(cabinId)}
+              disabled={isDeleting ? true : false}
+            />
+          </Modal.Window>
         </Modal>
-      </div>
+
     </Table.Row>
   );
 }
