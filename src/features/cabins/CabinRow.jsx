@@ -82,7 +82,7 @@ function CabinRow({ cabin }) {
       {discount ? (
         <Discount>{formatCurrency(discount)}</Discount>
       ) : (
-        <span>&madash;</span>
+        <span>&mdash;</span>
       )}
 
         <Modal>
@@ -111,7 +111,7 @@ function CabinRow({ cabin }) {
             <ConfirmDelete
               resourceName="cabins"
               onConfirm={() => deleteCabin(cabinId)}
-              disabled={isDeleting ? true : false}
+              disabled={isDeleting || isCreating}
             />
           </Modal.Window>
         </Modal>

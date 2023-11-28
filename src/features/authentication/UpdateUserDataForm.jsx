@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import {Button} from "../../ui/Button";
+import { Button } from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
@@ -25,7 +25,21 @@ function UpdateUserDataForm() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!fullName) return;
-    updateUser({ fullName, avatar });
+    updateUser(
+      { fullName, avatar },
+      {
+        onSuccess: () => {
+          setAvatar(null);
+          e.target.reset();
+        },
+      }
+    );
+  }
+
+  function handelCancel() {
+    setFullName(currentFullName);
+    setAvatar(null);
+
   }
 
   return (
@@ -50,7 +64,7 @@ function UpdateUserDataForm() {
         />
       </FormRow>
       <FormRow>
-        <Button type="reset" variation="secondary">
+        <Button type="reset" variation="secondary" onClick={handelCancel}>
           Cancel
         </Button>
         <Button disabled={isUpdating}>Update account</Button>

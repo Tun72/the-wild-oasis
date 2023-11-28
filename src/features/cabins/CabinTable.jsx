@@ -5,21 +5,19 @@ import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import { useSearchParams } from "react-router-dom";
 import Empty from "../../ui/Empty";
+import Pagination from "../../ui/Pagination";
 
 function CabinTable() {
-  const { cabins, isLoading } = useCabins();
+  const { cabins, isLoading, count } = useCabins();
   const [searchParams] = useSearchParams();
-
   if (!cabins?.length) return <Empty resourceName={"cabins"} />;
 
   const filterValue = searchParams.get("discount") || "all";
   let filterCabins = cabins;
 
   if (filterValue === "all") filterCabins = cabins;
-
   if (filterValue === "no-discount")
     filterCabins = cabins?.filter((cabin) => cabin.discount === 0);
-
   if (filterValue === "with-discount")
     filterCabins = cabins?.filter((cabin) => cabin.discount > 0);
 
@@ -31,6 +29,7 @@ function CabinTable() {
 
   if (isLoading) return <Spinner />;
 
+  console.log(count);
   return (
     <Menus>
       <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
@@ -46,6 +45,9 @@ function CabinTable() {
           data={filterCabins}
           render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
         />
+        <Table.Footer>
+          <Pagination count={count} />
+        </Table.Footer>
       </Table>
     </Menus>
   );
