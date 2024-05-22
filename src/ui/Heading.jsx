@@ -1,10 +1,6 @@
 import styled, { css } from "styled-components";
 
-// const H1 = styled.h1`
-//   font-size: 30px;
-//   font-weight: 600;
-//   background: yellow;
-// `;
+
 
 const Heading = styled.h1`
   ${(props) =>
